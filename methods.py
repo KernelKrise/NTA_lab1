@@ -1,13 +1,13 @@
 from random import randint
+from math import gcd
 
-
-def gcd(a: int, b: int) -> int:
-    rest = a % b
-    while rest != 0:
-        a = b
-        b = rest
-        rest = a - (b * int(a / b))
-    return b
+# def gcd(a: int, b: int) -> int:
+#     rest = a % b
+#     while rest != 0:
+#         a = b
+#         b = rest
+#         rest = a - (b * int(a / b))
+#     return b
 
 
 def is_prime(p: int, k: int = 10) -> bool:
@@ -53,6 +53,28 @@ def test_divs(n: int) -> int or bool:
     return True
 
 
+def pollard_func(x: int, n: int) -> int:
+    return (x ** 2 + 1) % n
+
+
+def Pollards_rho_algorithm(n: int) -> int or None:
+    first_val = 2
+    while first_val < 18:
+        x_array = [first_val]
+        while True:
+            x_k = pollard_func(x_array[-1], n)
+            if x_k in x_array:
+                break
+            x_array.append(x_k)
+            for x_j in x_array[:-1]:
+                d = gcd(x_k - x_j, n)
+                if d != 1:
+                    return d
+        first_val += 1
+    return None
+
+
 if __name__ == "__main__":
     print(test_divs(323324583518541583))
     print(is_prime(9621744377587719835533673707134721157123))
+    print(Pollards_rho_algorithm(323324583518541583))
