@@ -45,6 +45,14 @@ def is_prime(p: int, k: int = 10) -> bool:
     return True
 
 
+def test_divs(n: int) -> int or bool:
+    small_primes = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47)
+    for prime_number in small_primes:
+        if n % prime_number == 0:
+            return prime_number
+    return True
+
+
 if __name__ == "__main__":
-    print(is_prime(759003545117468445574874356849))
+    print(test_divs(323324583518541583))
     print(is_prime(9621744377587719835533673707134721157123))
