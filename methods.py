@@ -74,7 +74,25 @@ def Pollards_rho_algorithm(n: int) -> int or None:
     return None
 
 
+def Pollards_Floid_rho_algorithm(n: int) -> int or None:
+    i = 2
+    while i < 18:
+        x_0, y_0 = i, i
+        while True:
+            x_0 = pollard_func(x_0, n)
+            y_0 = pollard_func(pollard_func(y_0, n), n)
+            if x_0 == y_0:
+                break
+            d = gcd(y_0 - x_0, n)
+            if d != 1:
+                return d
+        i += 1
+    return None
+
+
 if __name__ == "__main__":
     print(test_divs(323324583518541583))
     print(is_prime(9621744377587719835533673707134721157123))
-    print(Pollards_rho_algorithm(323324583518541583))
+    # print(Pollards_rho_algorithm(2485021628404193))
+    print(Pollards_Floid_rho_algorithm(9914091075041 * 5068286862589))
+    
