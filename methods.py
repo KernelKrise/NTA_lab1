@@ -1,5 +1,7 @@
 from random import randint
 from math import gcd
+from math import floor
+
 
 # def gcd(a: int, b: int) -> int:
 #     rest = a % b
@@ -90,9 +92,22 @@ def Pollards_Floid_rho_algorithm(n: int) -> int or None:
     return None
 
 
+def CFRAC(n: int) -> int or None:
+    b_s, b_s2 = list(), list()
+    sqrt_n = round(pow(n, 0.5), 3)
+    v_0, alpha_0, a_0, u_0 = 1, sqrt_n, floor(sqrt_n), floor(sqrt_n)
+    while True:
+        v_1 = (n - u_0 ** 2) / v_0
+        alpha_1 = (sqrt_n + u_0) / v_1
+        a_1 = floor(alpha_1)
+        u_1 = a_1 * v_1 - u_0
+        u_0 = u_1
+
+
+
 if __name__ == "__main__":
-    print(test_divs(323324583518541583))
-    print(is_prime(9621744377587719835533673707134721157123))
+    # print(test_divs(323324583518541583))
+    # print(is_prime(9621744377587719835533673707134721157123))
     # print(Pollards_rho_algorithm(2485021628404193))
-    print(Pollards_Floid_rho_algorithm(9914091075041 * 5068286862589))
-    
+    # print(Pollards_Floid_rho_algorithm(9914091075041 * 5068286862589))
+    ...
